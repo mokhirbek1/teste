@@ -15,16 +15,34 @@ myForm.addEventListener('submit', function () {
    <h1 class="title__name">${userName}</h1>
    <h1 class="title__ship">${userShip}</h1>
    <h1 class="title__number">${userPhone}</h1>
-   <button class="delete__btn">delete</button>`
+   <button class="delete__btn">delete</button>
+   <button class="update__btn">update</button>`
 
     contact.classList.add('contact__info')
 
 
     contacts.append(contact)
+    myForm.reset()
+    
 })
+
+
+
 
 contacts.addEventListener('click', function (event) {
     if (event.target.classList.contains('delete__btn')) {
-        contacts.removeChild(event.target.parentNode)
+        let contactRemove = event.target.parentNode;
+        contacts.removeChild(contactRemove);
     }
-})
+
+    if (event.target.classList.contains('update__btn')) {
+        let contactUpdate = event.target.parentNode;
+        let userName = prompt('Ismni kiriting:');
+        let userShip = prompt('Shaxsini kiriting:');
+        let userPhone = prompt('Rqamini kiriting:');
+
+        contactUpdate.querySelector('.title__name').textContent = userName;
+        contactUpdate.querySelector('.title__ship').textContent = userShip;
+        contactUpdate.querySelector('.title__number').textContent = userPhone;
+    }
+});
